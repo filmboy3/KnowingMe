@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Getting to Know You Game!</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Raleway:600,900' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+    <div class="flex-container" id="flexContainer">
+        <div id="timeCard">Time:</div>
+        <div id="countdown">10</div>
+        <div id="scoreCard">Score:</div>
+        <div id="score">0</div>
+        <!-- <div>Round:</div>
+            <div id="round">1</div> -->
+            
+        </div>
+        
+        <div id ="container">
+            <div id="buttonsBar">
+                <button id="reset" onclick="reset()" style="opacity:0;">ROUND 1</button>
+                <button id="reset2" onclick="reset2()" disabled style="opacity:0;">ROUND 2</button>
+                <button id="start" onclick="start()"><img src="img/timer.png" alt="timer"></button>
+                <button id="next" onclick="next()"><img src="img/CheckNew.png" alt="check"></button>
+                <button id="pass" onclick="pass()"><img src="img/incorrect.png" alt="incorrect"></button>
+                <!-- <button id="newPlayer" onclick="newPlayer()">Submit</button> -->
+                <button id="next2" onclick="next2()" disabled style="opacity:0;"><img src="img/CheckNew.png" alt="check"></button>
+                <button id="pass2" onclick="pass2()" disabled style="opacity:0;"><img src="img/incorrect.png" alt="incorrect"></button>
+                <button id="start2" onclick="start2()" disabled style="opacity:0;"><img src="img/timer.png" alt="timer"></button>
+                <button id="round2" onclick="newRound()" disabled style="opacity:0;">ROUND 2</button>
+            </div>
+            <h1 id="prompt"></h1>
+            <br>
+            <form id="formInput" onsubmit="takeName()">
+                <input id="item" type="text" placeholder="First ... who's playing?" required>
+                <button type="submit" onclick="takeName()">SUBMIT NAME</button>
+            </form>
+            <form id="formInput2" onsubmit="takeName()" style="opacity:0;">
+                <input id="item2" type="text" placeholder="Who's up?" required>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    const arr = ["If you could live in any sitcom, which one would it be?", "What was in your high school locker?", "Best dessert you have ever had?", "What is your favorite season?", "If you had your own talk show, who would your first guest be?", "What is in the trunk of your car right now?", "What do you look for in a friend?", "If you were handed free opera tickets, would you go or sell them?", "What is your favorite restaurant?", "What was the best thing that happened to you this past weekend?", "When you were in grade school, what did you want to be when you grew up? ?", "What book has influenced you lately?", "If you were to perform in the circus, what would you do?", "If you could eliminate one thing you do each day in the bathroom so that you never had to do it again, what would it be?", "What is the best gift anyone's ever given to you?", "You were just given a yacht. What would you name it?", "What is the most pleasant smell?", "If you were to get a tattoo, what would it be?", "Name your favorite song.", "If you were to pick up a new musical instrument, which would it be?", "When trick-or-treating which candy did you NOT want to get?", " do you live in this area?", "What is your favorite memory of Christmases past?", "If a movie was being made of your life, who would play you?", "What's the most important thing to you in life?", "What was the weirdest food you've ever eaten?", "If you were in a Miss America-esque competition, what would your talent be?", "What do you think the most ultimate gift of the world is?", "What's your favorite ice cream flavor?", "What is your earliest childhood memory?", "What was your favorite TV show when you were growing up?", "If you had one extra hour of free time a day, how would you use it?", "What music is in your playlist right now?", "What is your dream job?", "Who is the famous person you've had a face to face encounter with.", "What's your favorite children's story.", "If you could spend 15 minutes with any living person, who would it be?", "What person in the Bible do you most closely identify with?", "What article of clothing most closely describes your personality?", "If you were to write a book what would it be about?", "Which way do you eat corn on the cob?", "How many rings before you answer the phone?", "What is the first thing you think of when you wake in the morning?", "If you won a million dollars, what would you do with it?", "If you had to, what part of your body would you get pierced?", "What makes you feel the most secure?", "Who do you admire the most?", "What was your nickname growing up, or now?", "Who was your hero when you were a child?", "What is your favorite cartoon character?", "Based on something you've already done, how might you make it into the Guinness Book of World Records?", "What was your favorite thing to play with as a child? ", "If you could be any animal in the world for 24 hours, which animal would you be?", "What's the most daredevil-y stunt you've tried?", "If you could rid the world of one thing, what would it be?", "If you could be invisible for a day, what would you do?", "What is your favorite weird food combination?", "If you had to be a flower, which one would you like to be?", "If you were stranded on a desert island, what book would you take with you?", "What is your favorite color?", "What's the best dinner you ever had?", "What is your favorite commercial?", "If you could be an ice cream flavor, what would it be?", "Name a turning point in your life that makes you smile or cry.", "If there were a holiday in your honor what would it celebrate?", "If you were to be on a reality TV show which one would you be on?", "What is your favorite time of day?", "If someone rented a billboard for you, what would you put on it?", "What is your worst personality characteristic?", "If you had to be a teacher of something, what would you teach?", "How would you like to be remembered?", "What is one thing that you constantly think about?", "What did you like best about your hometown?", "If you could have written any book, what book would you like to have written?", "What is your most favorite pair of shoes ever?", "What's your favorite sport?", "If you could have breakfast with cereal box cartoon character, who would you choose?", "What kind of music do you like?", "What is your favorite animal?", "What do you keep in your wallet aside from money, cards and pictures?", "If you could plan your ultimate vacation, where would you go?", "What is something you have that is of sentimental value?", "What was the first car you drove?", "What do you miss most about childhood?", "What one guilty pleasure could you not live without?", "What was the first live concert you ever attended?", "If you could change one current event in the world what would it be?", "If you could teleport anywhere for an afternoon, where would you go?", "If you could date any celebrity, who would it be?", "If you could switch bodies with a certain celebrity, who would it be?", "What does your room look like?", "What Internet site do you surf on the most?", "If you could only wear one color for the rest of your life, what would it be?", "If you could have one super human power, what would it be?", "Where would you like to retire?", "Who has been the biggest inspiration in your life?", "Which of Snow White's seven dwarfs describes you best? (Doc, Happy, Bashful, Sleepy, Sneezy, Grumpy, Dopey)", "If you were attending a Halloween party, what would your costume be?", "What do you feel is your most attractive physical feature?", "If you were on death row, what would your last meal be?", "What was your worst summer or part-time job?", "In a time machine that can alter history, what time period would you travel to?", "What's the best class you ever took in school?", "If you had unlimited money and space, what one thing would you add to your bedroom?", "What is a fashion trend that you used to wear that you would now be embarrassed to wear?", "If you could go only to one restaurant for the next five years, which would it be?", "What is something you have lost that you have never found, or were tremendously relieved when you did find it?", "What is your favorite breakfast?", "What is set as the background image on your computer?", "What's your favorite magazine?", "What movie or TV show do you take guilty pleasure in watching?", "What traditional stereotype would you classify yourself as?", "What clique did you belong to in high school?", "If you had millions to give to charity, which charity would you pick?", "What kind of deodorant do you use?", "What's your favorite style of jeans?", "What household chore do you hate the most?", "If you had a 'theme song' that played whenever you walked into a room full of people, what would it be?", "What is the best reward anyone can give you?", "Crunchy Peanut Butter or Smooth?", "What's your favorite kitchen appliance?", "Preferred type of milk?", "What was your favorite decade you've lived in? ", "What kind of hat describes your personality?", "When you were in elementary school, what was your favorite activity during recess?", "If you had to move out of this country, what country would you move to?", "What's your ideal romantic date?", "If you had to lose one of your five senses, which one of them would you prefer to lose?", "What was the worst smell you have ever smelled?", "What takes you out of your comfort zone?", "If you were on the cover of a magazine, which one would it be?", "If you could be laid to rest anywhere, where would it be? ?", "If you were a piece of fruit, what fruit would you choose to be?", "Which one physical feature would you change if you could?", "Name the most important characteristic you look for in a close friend.", "What's one of your favorite things to do when you have a night off?", "What’s your favorite way to celebrate an accomplishment?", "What is your favorite holiday?", "What is your favorite candy?", "What animal scares you the most?", "If you were the eighth dwarf, what would your name be?", "If you were elected mayor of your city, what would be your first improvement?", "If you could be any superhero, which one would you be?", "What are your favorite pizza toppings?", "What's your favorite fabric?", "You are chosen to make dinner for a very special guest. What will you serve them?", "If you could ask God a question what would it be?", "If you had to give up one food forever, what would it be?", "What is the scariest thing you have ever done for fun?", "If you could have any super power what would it be?", "If you could listen to only one CD for the rest of your life, what would it be?", "If your house was on fire, what one thing would you take? (assuming family/pets are safe)", "If you could have one thing to drink before you died what would it be?", "What was the first record or CD that you bought?", "What do you have in your bag/wallet that best describes your personality?", "What was your favorite game when you were a kid?", "What is your biggest fear or phobia?", "What is your favorite movie?", "What is your favorite winter activity?", "What's your favorite song to sing in Karaoke?", "If you had to be handcuffed to one person for an entire month, who would it be?", "What is your favorite song to sing in the shower?", "What is your idea of a great dessert?", "What did you eat for breakfast?", "If you moved to Sesame Street, who would you want as your neighbor?", "What type of music relaxes you the most?", "What TV game show would you want to go on?", "What's a favorite sound of yours?", "What phrase or question did a parent use over and over?", "If you could instantly become fluent in another language, which language would you choose?", "What is your favorite 'made up' word from your childhood or that of one of your children?", "What do you love most about living in this country?", "Which rule set by your parents do you appreciate the most?", "What question do you NOT like when others ask you?", "One particular day that I wanted to last forever was . . .", "If you could have a condiment dispensed from your navel, what would it be?", "What was the best concert you've ever been to?", "If you could be invisible for one day, where would you like to be?", "What was your worst or most dramatic car trouble?", "What is your favorite thing to do in the summer? ", "You have to wear a t-shirt with one word on it for one year. Which word do you choose?", "What's your favorite spice?", "What was your first job where you got paid by someone other than your parents?", "If you could be a cookie what kind of cookie would you be?", "How much do you spend on hair and/or nails each month?", "What is your favorite house architectural style?", "Favorite topping at a salad bar?", "Favorite Ice Cream topping?", "Favorite Ice Cream flavor?", "What is your favorite soup?", "Tell about a collection you have now.", "If you could afford a vacation home, where would it be?", "What is your favorite kind of pie?", "Favorite retail store?", "Have you ever been a participant in a parade? What did you do?", "If you could compete in the Olympics, what event would you choose?", "If we Googled your name what would we see?", "If you had one free day to do anything you want, what would you do?", "Do you prefer eating the frosting of the cupcake or eating the cupcake first?", "What can you always be found with?", "If you could invent a gadget what will it be?", "What is the longest book you ever read?", "When did you last write a hand written letter?", "What is your favorite hobby?", "What's your favorite outdoor activity?", "What is one favorite thing you do by yourself?", "How do you like to spend a rainy day?", "Do you untie your shoes when you take them off?", "What did you enjoy most about school?", "How old is the oldest pair of shoes in your closet?", "Weirdest thing you have ever eaten?", "What do you do first thing in the morning?", "You can have an unlimited supply of one thing for the rest of your life, what is it? ", "What fictional place would you like to visit?", "You can only own either a smartphone or a computer, which do you choose?", "If you could see one movie again for the first time, what would it be?", "If you were immortal, what age would you choose to stop aging at?", "What is your least favorite food?", "If you were a wrestler what would be your entrance theme song?", "If you had to eat one meal everyday for the rest of your life what would it be?", "What’s your favorite place of all the places you’ve travelled?", "If you could be any supernatural creature, what would you be?", "What’s your favorite sandwich?", "What is your favorite item you’ve bought this year?", "If you can instantly become an expert in something, what would it be?", "If you had to teach a class on one thing, what would you teach?", "What is your most used emoji?", "Would you rather travel back in time to meet your ancestors or to the future to meet your descendants?", "What’s your favorite holiday?", "What is your favorite breakfast food?", "What is your favorite TV show?", "If you could commit any crime and get away with it what would you choose?", "If you could live anywhere in the world for a year, where would it be?", "What was the worst hair style you've ever had?", "What was the worst style choice you ever made?", "What does your favorite shirt look like?", "If you could only keep on app on your smartphone, what would you choose?", "If you could add anyone to Mount Rushmore who would it be, why?", "What is your favorite television network?", "If you could bring back any fashion trend what would it be?", "If you could eliminate one thing from daily routine, what would it be?", "What was your favorite game to play as a child?"];
+
+    let seconds;
+    let counter = 0;
+    let arr2 = shuffle(arr);
+    let indexCounter = 0;
+    let users = [];
+    let lengthOfTime = 10;
+    let totalGame = {};
+    let totalCounter = 0;
+    let oldArray = ["nothing"];
+    var playerName = "";
+    let currentPlayer = "";
+    let nameTemp;
+    let currentPhrase;
+    let totalPhrase;
+    let secondRoundCounter = 0;
+    // let namedPlayer = document.getElementById("item").value;
+
+    const gradient = document.querySelector(".gradient");
+
+function onMouseMove(event) {
+  gradient.style.backgroundImage = 'radial-gradient(at ' + event.clientX + 'px ' + event.clientY + 'px, rgba(159,0,191,.9) 0, #4D4FA7 70%)';
+}
+document.addEventListener("mousemove", onMouseMove);
+
+
+    function runPhrase2() {
+        // debugger;
+        let keysArray = Object.keys(localStorage);
+        currentPlayer = localStorage.getItem("username");
+
+        letNumber = Math.floor(Math.random() * keysArray.length);
+        let newPrompt = keysArray[letNumber].slice(1,-1);
+        localStorage.removeItem(keysArray[letNumber].slice(1,-1));
+        document.getElementById('prompt').innerHTML = newPrompt;
+        return newPrompt;
+
+        // while (newPrompt[0] == currentPlayer[0] && newPrompt[1] == currentPlayer[1] && newPrompt[2] == currentPlayer[2]) {
+        //     letNumber = Math.floor(Math.random() * keysArray.length);
+        //     newPrompt = keysArray[letNumber].slice(1,-1);
+        // }
+        // localStorage.removeItem(keysArray[letNumber].slice(1,-1));
+    
+        //     document.getElementById('prompt').innerHTML = newPrompt;
+        //     return newPrompt;
+        }
+        
+        function takeName2() {
+            document.getElementById("formInput2").style.opacity = "0";
+            document.getElementById("formInput2").disabled = false;
+            nameTemp = document.getElementById('item').value;
+            localStorage.setItem('username', nameTemp);
+            newRound();
+        }
+    function pass2() {
+        runPhrase2();
+    }
+
+    document.create(div)
+
+    function next2() {
+        // debugger;
+        runPhrase2();
+        
+        counter++;
+        // secondRoundCounter++;
+        // nameTemp = localStorage.getItem('username');
+        // console.log(`NameTemp: ${nameTemp}`);
+        // currentPhrase = runPhrase();
+        // console.log(`Current Phrase: ${currentPhrase}`);
+        // totalPhrase = `${nameTemp}: ${currentPhrase}`;
+        // localStorage.setItem(JSON.stringify(totalPhrase), totalCounter);
+        // WORKING SOLUTION: localStorage.setItem(JSON.stringify(currentPhrase), JSON.stringify(totalCounter));
+        document.getElementById('score').innerHTML = counter;
+    }
+
+    
+
+    function reset() {
+        counter = 0;
+        indexCounter = 0;
+        document.getElementById("formInput").disabled = false;
+        document.getElementById("formInput").style.opacity = "100";
+        document.getElementById('reset').style.opacity = "0";
+        document.getElementById('pass').style.opacity = "100";
+        document.getElementById('next').style.opacity = "100";
+        document.getElementById('start').style.opacity = "100";
+        document.getElementById('start').disabled = false;
+        document.body.style.backgroundColor = "limegreen";
+        document.getElementById('prompt').innerHTML = '';
+        document.getElementById('flexContainer').style.backgroundColor = 'limegreen';
+        document.getElementById('countdown').innerHTML = lengthOfTime;
+        document.getElementById('scoreCard').innerHTML = "Score:";
+        document.getElementById('timeCard').innerHTML = "Time:";
+        document.getElementById('score').innerHTML = counter;
+        document.getElementById('reset').disabled = true;
+        document.getElementById('round2').disabled = true;
+        document.getElementById('round2').style.opacity = "0";
+        
+    }
+
+    function takeName() {
+        nameTemp = document.getElementById('item').value;
+        document.getElementById("formInput2").style.opacity = "0";
+        document.getElementById("formInput2").disabled = false;
+        localStorage.setItem('username', nameTemp);
+    }
+
+
+    
+    function next() {
+        // debugger;
+        counter++;
+        totalCounter++;
+        nameTemp = localStorage.getItem('username');
+        console.log(`NameTemp: ${nameTemp}`);
+        currentPhrase = runPhrase();
+        console.log(`Current Phrase: ${currentPhrase}`);
+        totalPhrase = `${nameTemp}: ${currentPhrase}`;
+        localStorage.setItem(JSON.stringify(totalPhrase), totalCounter);
+        // WORKING SOLUTION: localStorage.setItem(JSON.stringify(currentPhrase), JSON.stringify(totalCounter));
+        document.getElementById('score').innerHTML = counter;
+    }
+
+    function pass() {
+        runPhrase();
+    }
+
+    function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+  return array;
+}
+
+    function start() {
+        countdown();
+        pass();
+    }
+
+    function runPhrase() {
+           
+            phrase = arr[indexCounter];
+            indexCounter++;
+            document.getElementById('prompt').innerHTML = phrase;
+            return phrase;
+    }
+   
+    function countdown() {
+      document.getElementById("formInput").disabled = true;
+      document.getElementById("formInput").style.opacity = "0";
+      document.getElementById('start').disabled = true;
+      document.getElementById('reset').disabled = true;
+      document.getElementById('next').disabled = false;
+      document.getElementById('pass').disabled = false;
+
+      seconds = document.getElementById('countdown').innerHTML;
+      seconds = parseInt(seconds, 10);
+      document.getElementById('start').style.opacity = "0";
+      document.getElementById('reset').style.opacity = "0";
+   
+      if (seconds == 1) {
+          document.getElementById('reset').style.opacity = "100";
+          document.getElementById('reset').disabled = false;
+          document.getElementById('next').disabled = true;
+          document.getElementById('pass').disabled = true;
+          document.getElementById('next2').disabled = true;
+          document.getElementById('pass2').disabled = true;
+          document.getElementById('next2').style.opacity = "0";
+          document.getElementById('pass2').style.opacity = "0";
+          document.getElementById('round2').style.opacity = "100";
+          document.getElementById('round2').disabled = false;
+
+          document.getElementById('next').style.opacity = "0";
+          document.getElementById('pass').style.opacity = "0";
+          document.body.style.backgroundColor = "red";
+          document.getElementById('prompt').innerHTML = `Times Up! Final Score: ${counter}`;
+          document.getElementById('flexContainer').style.backgroundColor = 'red';
+          document.getElementById('countdown').innerHTML = ``;
+        document.getElementById('scoreCard').innerHTML = ``;
+        document.getElementById('timeCard').innerHTML = ``;
+        document.getElementById('score').innerHTML = ``;
+        
+        
+        // temp5 = document.getElementById('buttonsBar');
+        // temp5.style.opacity = "0";
+
+        return;
+      }
+
+      seconds--;
+      document.getElementById('countdown').innerHTML = seconds;
+      timeoutMyOswego = setTimeout(countdown, 1000);
+    } 
+
+    function newRound() {
+        // document.getElementById("formInput2").disabled = false;
+        counter = 0;
+        indexCounter = 0;
+        // document.getElementById("formInput2").style.opacity = "100";
+        document.getElementById("formInput").disabled = true;
+        document.getElementById("formInput").style.opacity = "0";
+        document.getElementById('reset').disabled = true;
+        document.getElementById('reset').style.opacity = "0";
+        document.getElementById('round2').disabled = true;
+        document.getElementById('round2').style.opacity = "0";
+        document.getElementById('start2').disabled = false;
+        document.getElementById('reset2').disabled = true;
+        document.getElementById('start2').style.opacity = "100";
+        document.getElementById('reset2').style.opacity = "0";
+        document.getElementById('pass2').style.opacity = "100";
+        document.getElementById('next2').style.opacity = "100";
+        document.body.style.backgroundColor = "limegreen";
+        document.getElementById('prompt').innerHTML = '';
+        document.getElementById('flexContainer').style.backgroundColor = 'limegreen';
+        document.getElementById('countdown').innerHTML = lengthOfTime;
+        document.getElementById('scoreCard').innerHTML = "Score:";
+        document.getElementById('timeCard').innerHTML = "Time:";
+        document.getElementById('score').innerHTML = counter;
+    }
+
+      function start2() {
+        countdown2();
+        pass2();
+    }
+
+    function countdown2() {
+      document.getElementById("formInput2").disabled = true;
+      document.getElementById("formInput2").style.opacity = "0";
+      document.getElementById('start2').disabled = true;
+      document.getElementById('reset2').disabled = true;
+      document.getElementById('next2').disabled = false;
+      document.getElementById('pass2').disabled = false;
+
+      seconds = document.getElementById('countdown').innerHTML;
+      seconds = parseInt(seconds, 10);
+      document.getElementById('start2').style.opacity = "0";
+      document.getElementById('reset2').style.opacity = "0";
+   
+      if (seconds == 1) {
+          document.getElementById('reset2').style.opacity = "100";
+          document.getElementById('reset2').disabled = false;
+          document.getElementById('next2').disabled = true;
+          document.getElementById('next2').style.opacity = "0";
+          document.getElementById('pass2').disabled = true;
+          document.getElementById('pass2').style.opacity = "0";
+        //   document.getElementById('round2').style.opacity = "100";
+        //   document.getElementById('round2').disabled = false;
+
+          document.getElementById('next2').style.opacity = "0";
+          document.getElementById('pass2').style.opacity = "0";
+          document.body.style.backgroundColor = "red";
+          document.getElementById('prompt').innerHTML = `Times Up! Final Score: <span>${counter}<span>`;
+          document.getElementById('flexContainer').style.backgroundColor = 'red';
+          document.getElementById('countdown').innerHTML = ``;
+        document.getElementById('scoreCard').innerHTML = ``;
+        document.getElementById('timeCard').innerHTML = ``;
+        document.getElementById('score').innerHTML = ``;
+        
+        
+        // temp5 = document.getElementById('buttonsBar');
+        // temp5.style.opacity = "0";
+
+        return;
+    }
+
+      seconds--;
+      document.getElementById('countdown').innerHTML = seconds;
+      timeoutMyOswego = setTimeout(countdown, 1000);
+}
+
+  </script>
